@@ -172,7 +172,7 @@ const Home: NextPage = () => {
           {" "}
           <HeaderComponent></HeaderComponent>
         </header>
-          <h2 style={{fontFamily: 'Karasha'}} className={'text-5xl my-5 mt-10 text-center'}>KomaINU</h2>
+          <h2 style={{fontFamily: 'Karasha'}} className={'text-5xl my-5 mt-10 text-center'}>Komainux</h2>
         <div className="w-1/2 h-1/2 lg:w-1/3 lg:h-1/3 flex flex-col mt-5 mx-auto justify-center">
         <Image src={KomaInuLogo}></Image>
         </div>
