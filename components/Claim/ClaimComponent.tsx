@@ -9,7 +9,7 @@ import {
   JsonRpcFetchFunc,
   Web3Provider,
 } from "@ethersproject/providers";
-import { formatEther, parseEther, ethers } from "@ethersproject/units";
+import { formatEther, parseEther} from "@ethersproject/units";
 import { Contract } from "@ethersproject/contracts";
 import { abiObject } from "../../contracts/abi/abi.mjs";
 import { Web3ReactProvider } from "@web3-react/core";
