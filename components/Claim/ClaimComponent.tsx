@@ -27,6 +27,7 @@ export default function ClaimComponent() {
   const [uniswaprovider, setuniswapprivder] = useState();
   const [tokenid, settokenid] = useState(Number);
   const [pendingreflections, setpendingreflections] = useState(Number);
+  const [totalburned, settotalburned] = useState(Number);
   const [totaldistributed, settotaldistributed] = useState(Number);
   const [balance, setbalance] = useState(Number);
   const [EthPrice, setEthPrice] = useState(Number);
@@ -70,39 +71,6 @@ export default function ClaimComponent() {
         setLoading(false);
       } finally {
         setLoading(false);
-      }
-    }
-
-    async function FetchTestyCurrentTokenPrice() {
-      if (showConnectAWallet) {
-        console.log({
-          message: "Hold On there Partner, there seems to be an Account err!",
-        });
-        return;
-      }
-
-      try {
-        setLoading(true);
-        const response = await fetch(
-          "https://api.etherscan.io/api?module=contract&action=getabi&address=0x83e9f223e1edb3486f876ee888d76bfba26c475a&apikey=432BW4Y2JX817J6CJAWGHAFTXQNFVXRU2Q"
-        ); // Api Key also the pair contract
-
-        const data = await response.json();
-        const abi = data.result;
-        console.log(abi);
-        const provider = new Web3Provider(
-          library?.provider as ExternalProvider | JsonRpcFetchFunc
-        );
-        const contractaddress = "0x83e9f223e1edb3486f876ee888d76bfba26c475a"; // need uniswapv2pair
-        const contract = new Contract(contractaddress, abi, provider);
-        const Reserves = await contract.getReserves();
-        const JpegReserveA = await Reserves.reserve0;
-        const DisplayJpegReserves = JpegReserveA;
-        console.log(DisplayJpegReserves);
-        return DisplayJpegReserves;
-      } catch (error) {
-        console.log(error);
-      } finally {
       }
     }
     async function FetchMrTestyEthprice() {
@@ -190,13 +158,36 @@ export default function ClaimComponent() {
         const provider = new Web3Provider(
           library?.provider as ExternalProvider | JsonRpcFetchFunc
         );
-        const contractaddress = "0x9C3F96975324c51ecfE3722191655d1028575282"; // "clienttokenaddress"
+        const contractaddress = "0x5F5ba036Bd464782894499Fb21aa137d3eA9d757"; // "clienttokenaddress"
         const contract = new Contract(contractaddress, abi, provider);
         const rewardToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
         const Reflections = await contract.withdrawableDividendOf(account); //.claim()
         const finalnumber = Web3.utils.fromWei(Reflections.toString());
         setpendingreflections(finalnumber);
         console.log(Reflections);
+        console.log(finalnumber);
+        return finalnumber;
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    async function totalBurned() {
+      try {
+        setLoading(true);
+        const abi = abiObject;
+        const provider = new Web3Provider(
+          library?.provider as ExternalProvider | JsonRpcFetchFunc
+        );
+        const contractaddress = "0x5F5ba036Bd464782894499Fb21aa137d3eA9d757"; // "clienttokenaddress"
+        const contract = new Contract(contractaddress, abi, provider);
+        const burnAmount = await contract.TotalBurned();
+        const finalnumber = Number(Web3.utils.fromWei(burnAmount.toString())).toFixed(0);
+        settotalburned(finalnumber);
+        console.log(burnAmount);
         console.log(finalnumber);
         return finalnumber;
       } catch (error) {
@@ -220,11 +211,11 @@ export default function ClaimComponent() {
         const provider = new Web3Provider(
           library?.provider as ExternalProvider | JsonRpcFetchFunc
         );
-        const contractaddress = "0x9C3F96975324c51ecfE3722191655d1028575282"; // "clienttokenaddress"
+        const contractaddress = "0x5F5ba036Bd464782894499Fb21aa137d3eA9d757"; // "clienttokenaddress"
         const contract = new Contract(contractaddress, abi, provider);
         const rewardToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
         const Reflections = await contract.getTotalDividendsDistributed();
-        const formattedDistributed = Web3.utils.fromWei(Reflections.toString());
+        const formattedDistributed = Number(Web3.utils.fromWei(Reflections.toString())).toFixed(2);
         settotaldistributed(formattedDistributed);
         console.log(formattedDistributed);
 
@@ -321,6 +312,7 @@ export default function ClaimComponent() {
     scrollpositionAnimationright();
     scrollpositionAnimationfadeOut();
 
+    totalBurned();
     PendingReflections();
     Fetchbalance();
     FetchDistributed();
@@ -339,7 +331,7 @@ export default function ClaimComponent() {
       setLoading(true);
       const data = abiObject;
       const abi = data;
-      const contractaddress = "0x9C3F96975324c51ecfE3722191655d1028575282"; // "clienttokenaddress"
+      const contractaddress = "0x5F5ba036Bd464782894499Fb21aa137d3eA9d757"; // "clienttokenaddress"
       const provider = new Web3Provider(
         library?.provider as ExternalProvider | JsonRpcFetchFunc
       );
@@ -429,7 +421,7 @@ export default function ClaimComponent() {
               "rounded-xl text-black text-xl px-4 py-2 m-3"
             }
           >
-            <p className={"text-xl font-bold text-gray-800"}>
+            <p className={"text-xl font-bold text-gray-300"}>
               Pending ETH Rewards:
             </p>
           </div>
@@ -438,28 +430,40 @@ export default function ClaimComponent() {
               "rounded-xl text-black text-xl px-4 py-2 m-3"
             }
           >
-            <p className={"text-xl text-gray-800 "}>{pendingreflections}</p>
+            <p className={"text-xl text-gray-300 "}>{pendingreflections}</p>
           </div>
           <div
             className={
               "rounded-xl text-black  text-xl px-4 py-2 m-3"
             }
           >
-            <p className={"text-xl font-bold text-gray-800"}>
+            <p className={"text-xl font-bold text-gray-300"}>
               Total ETH Distributed
             </p>
           </div>
           <div className={"rounded-xl text-black text-xl px-4 py-2 m-3"}>
-            <p className={"text-xl text-gray-800"}>{totaldistributed}</p>
+            <p className={"text-xl text-gray-300"}>{totaldistributed} ETH</p>
+          </div>
+          <div
+            className={
+              "rounded-xl text-black  text-xl px-4 py-2 m-3"
+            }
+          >
+            <p className={"text-xl font-bold text-gray-300"}>
+              Total burned
+            </p>
+          </div>
+          <div className={"rounded-xl text-black text-xl px-4 py-2 m-3"}>
+            <p className={"text-xl text-gray-300"}>{totalburned} KOMAX</p>
           </div>
         </div>
         
 
         <h5
-          style={{ fontFamily: "PaintDrops" }}
-          className="text-center mb-2 text-4xl font-bold tracking-tight self-center text-gray-800 dark:text-gray-800"
+          style={{ fontFamily: "Karasha" }}
+          className="text-center mb-2 text-4xl self-center text-gray-600"
         >
-          Claim ETH Rewards < br/> (GOONZ TOKEN HOLDERS)
+          Claim ETH Rewards
         </h5>
         {loading ? (
           <Spin indicator={antIcon} className="add-spinner" />
@@ -467,11 +471,11 @@ export default function ClaimComponent() {
           <>
             <div className="flex flex-row content-center items-center max-w-screen">
               <button
-                style={{ fontFamily: "PaintDrops" }}
+                style={{ fontFamily: "Karasha" }}
                 type="button"
                 onClick={() => Claimtoken()}
                 className="w-fit mx-0 px-20 md:px-32 self-center content-center tn:mx-0 elevation-10 hover:elevation-50 md:mx-24 h-24
-                 clip-path-mycorners justify-self-center mt-10 text-gray-800 bg-red-600 hover:bg-red-400 transition ease-in-out duration-700
+                 clip-path-mycorners justify-self-center mt-10 text-gray-300 hover:text-gray-100 bg-red-600 hover:bg-red-800 transition ease-in-out duration-700
                  text-3xl lg:text-4xl "
               >
                 Claim
@@ -486,14 +490,14 @@ export default function ClaimComponent() {
 
 //
 //<div className={"rounded-xl text-black text-xl px-4 py-2 m-3"}>
-//<p className={"text-xl font-bold text-gray-800"}>Market Cap</p>
+//<p className={"text-xl font-bold text-gray-300"}>Market Cap</p>
 //</div>
 //<div className={"rounded-xl text-black text-xl px-4 py-2 m-3"}>
-//<p className={"text-xl text-gray-800"}>{marketCap} USD</p>
+//<p className={"text-xl text-gray-300"}>{marketCap} USD</p>
 //</div>
 //<div className={"rounded-xl text-black text-xl px-4 py-2 m-3"}>
-//<p className={"text-xl font-bold text-gray-800"}>Holders:</p>
+//<p className={"text-xl font-bold text-gray-300"}>Holders:</p>
 //</div>
 //<div className={"rounded-xl text-black text-xl px-4 py-2 m-3"}>
-//<p className={"text-xl text-gray-800"}>{holdersCount}</p>
+//<p className={"text-xl text-gray-300"}>{holdersCount}</p>
 //</div>

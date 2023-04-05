@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import "@uniswap/widgets/fonts.css";
 import goonsHomepage from "../assets/images/GoonsHomepage.jpg";
 import goonsLogoMobile from "../assets/images/goonsLogoMobile.jpg";
-import goonImage from "../assets/images/GoonImage.jpg";
+import KomaInuLogo from "../assets/images/KomaInuLogo.png"
 import { useWeb3React } from "@web3-react/core";
 import ClaimComponent from "../components/Claim/ClaimComponent";
 import MintCardComponent from "../components/Cards/MintCard";
@@ -172,11 +172,9 @@ const Home: NextPage = () => {
           {" "}
           <HeaderComponent></HeaderComponent>
         </header>
-        <div className="flex flex-col mt-32 justify-center">
-          <Image
-            src={goonsHomepage}
-            className="sm:visible md:visible lg:visible xl:visible "
-          ></Image>
+          <h2 style={{fontFamily: 'Karasha'}} className={'text-5xl my-5 mt-10 text-center'}>KomaINU</h2>
+        <div className="w-1/2 h-1/2 lg:w-1/3 lg:h-1/3 flex flex-col mt-5 mx-auto justify-center">
+        <Image src={KomaInuLogo}></Image>
         </div>
         <div
           style={{
@@ -194,49 +192,33 @@ const Home: NextPage = () => {
             className={"flex flex-row w-screen object-center justify-center"}
           >
             <button
-              style={{ fontFamily: "PaintDrops" }}
-              onClick={() => window.open("https://opensea.io/collection/goonzgenesizseries")}
+              style={{ fontFamily: "Karasha" }}
+              onClick={() => window.open("")}
               type="button"
-              className="text-gray-800 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
-            >
-              {" "}
-              OpenSea
-            </button>
-            <button
-              style={{ fontFamily: "PaintDrops" }}
-              onClick={() => window.open("https://www.goonzproject.com/")}
-              type="button"
-              className="text-gray-800 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
+              className="text-gray-600 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
             >
               Website
             </button>
             <button
-              style={{ fontFamily: "PaintDrops" }}
+              style={{ fontFamily: "Karasha" }}
               onClick={() => window.open("")}
               type="button"
-              className="text-gray-800 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
+              className="text-gray-600 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
+            >
+              {" "}
+              Buy
+            </button>
+            <button
+              style={{ fontFamily: "Karasha" }}
+              onClick={() => window.open("")}
+              type="button"
+              className="text-gray-600 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
             >
               Token
             </button>
           </div>
         </div>
-
-        <p className={"my-10"}></p>
-
-        <div
-          className={
-            "flex flex-col xl:flex-row mx-auto justify-center px-6 md:px-16 lg:px-24"
-          }
-        >
-          <div
-            className={
-              "flex flex-col mx-auto px-12 mt-12 w-fit h-fit justify-center hover:animate-scaleintopleft js-show-on-scroll-scaleintopleft"
-            }
-          >
-            <Image className={""} src={goonImage}></Image>
-          </div>
-        </div>
-
+        <p className={"my-5"}></p>
         <hr className="my-4 mx-auto w-48 h-1 bg-red-500 rounded border-0 md:my-10" />
 
         <div className={"justify-center flex flex-col"}>
