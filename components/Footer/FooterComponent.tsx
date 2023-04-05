@@ -63,7 +63,7 @@ export default function FooterComponent() {
               </h2>
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-4">
-                  <a href="https://linktr.ee/goonzproject" className="hover:underline">
+                  <a href="https://linktr.ee/KomainuGuardianship" className="hover:underline">
                     Link Tree 
                     <br/>
                     
@@ -90,7 +90,7 @@ export default function FooterComponent() {
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
             <a
-              href=""
+              href="https://www.facebook.com/people/Komainu-Token/100089505065828/?mibextid=ZbWKwL"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -108,7 +108,7 @@ export default function FooterComponent() {
               <span className="sr-only"></span>
             </a>
             <a
-              href=""
+              href="https://twitter.com/Komainu_Token"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -122,7 +122,7 @@ export default function FooterComponent() {
               <span className="sr-only">Twitter page</span>
             </a>
             <a
-              href="https://github.com/CascadiaTech/Goons"
+              href="https://github.com/CascadiaTech/KomaINU"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg

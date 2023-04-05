@@ -37,7 +37,7 @@ export default function HeaderComponent() {
               <Dropdown.Item>
                 <a 
                   onClick={() =>
-                    window.open("https://www.goonzproject.com/")
+                    window.open("https://komatoken.io/")
                   }>
                   <p
                     className="cursor-pointer block py-2 pr-4 pl-3 text-black rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
@@ -58,11 +58,12 @@ export default function HeaderComponent() {
             <li>
                 <Image width={50} height={50} src={KomaInuLogo} alt="asa"></Image>
               </li> 
-            <li>
+            <li>  <a 
+                  onClick={() =>
+                    window.open("https://komatoken.io/")
+                  }>
                 <button
                   type="button"
-                  onClick={() => ""
-                  }
                   className="text-white bg-red-600 hover:bg-red-400 focus:ring-4 focus:ring-blue-300 mt-2 rounded-lg text-md px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                   <p
@@ -72,6 +73,7 @@ export default function HeaderComponent() {
                     Website{" "}
                   </p>
                 </button>
+                </a>
               </li>
               <li>
               <Link href="/">

@@ -193,7 +193,7 @@ const Home: NextPage = () => {
           >
             <button
               style={{ fontFamily: "Karasha" }}
-              onClick={() => window.open("")}
+              onClick={() => window.open("https://komatoken.io/")}
               type="button"
               className="text-gray-600 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
             >
@@ -201,7 +201,7 @@ const Home: NextPage = () => {
             </button>
             <button
               style={{ fontFamily: "Karasha" }}
-              onClick={() => window.open("")}
+              onClick={() => window.open("https://app.uniswap.org/#/swap?inputCurrency=0x5F5ba036Bd464782894499Fb21aa137d3eA9d757&outputCurrency=ETH")}
               type="button"
               className="text-gray-600 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
             >
@@ -210,7 +210,7 @@ const Home: NextPage = () => {
             </button>
             <button
               style={{ fontFamily: "Karasha" }}
-              onClick={() => window.open("")}
+              onClick={() => window.open("https://etherscan.io/address/0x5f5ba036bd464782894499fb21aa137d3ea9d757")}
               type="button"
               className="text-gray-600 hover:text-black border transition-all duration-600 border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-2xl md:text-3xl px-5 py-3 text-center mr-2 mb-2"
             >
