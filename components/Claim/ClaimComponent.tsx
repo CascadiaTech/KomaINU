@@ -187,11 +187,10 @@ export default function ClaimComponent() {
         const contract = new Contract(contractaddress, abi, provider);
         const burnAmount = await contract.TotalBurned();
         const finalNumber = formatEther(burnAmount.toString());
-        const finalNumberparse = parseFloat(finalNumber);
-        settotalburned(finalNumberparse);
+        settotalburned(finalNumber);
         console.log(burnAmount);
-        console.log(finalNumberparse);
-        return finalNumberparse;
+        console.log(finalNumber);
+        return finalNumber;
       } catch (error) {
         console.log(error);
         setLoading(false);
