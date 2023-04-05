@@ -187,7 +187,7 @@ export default function ClaimComponent() {
         const contract = new Contract(contractaddress, abi, provider);
         const burnAmount = await contract.TotalBurned();
         const finalNumber = formatEther(burnAmount.toString());
-        const finalNumberparse = parseFloat(finalNumber).toFixed(2);
+        const finalNumberparse = parseFloat(finalNumber);
         settotalburned(finalNumberparse);
         console.log(burnAmount);
         console.log(finalNumberparse);
@@ -217,7 +217,7 @@ export default function ClaimComponent() {
         const contract = new Contract(contractaddress, abi, provider);
         const rewardToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
         const Reflections = await contract.getTotalDividendsDistributed();
-        const formattedDistributed = Number(Web3.utils.fromWei(Reflections.toString())).toFixed(2);
+        const formattedDistributed = (formatEther(Reflections.toString()));
         settotaldistributed(formattedDistributed);
         console.log(formattedDistributed);
 
