@@ -164,7 +164,7 @@ export default function ClaimComponent() {
         const rewardToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
         const Reflections = await contract.withdrawableDividendOf(account); //.claim()
         const finalnumber = formatEther(Reflections.toString());
-        setpendingreflections(Number(finalnumber));
+        setpendingreflections(finalnumber);
         console.log(Reflections);
         console.log(finalnumber);
         return finalnumber;
