@@ -186,7 +186,7 @@ export default function ClaimComponent() {
         const contractaddress = "0x5F5ba036Bd464782894499Fb21aa137d3eA9d757"; // "clienttokenaddress"
         const contract = new Contract(contractaddress, abi, provider);
         const burnAmount = await contract.TotalBurned();
-        const finalNumber = formatEther(burnAmount.toString());
+        const finalNumber = formatEther(burnAmount);
         settotalburned(finalNumber);
         console.log(burnAmount);
         console.log(finalNumber);
@@ -197,12 +197,6 @@ export default function ClaimComponent() {
       } finally {
         setLoading(false);
       }
-    }
-
-    function formattedReflections() {
-      const formattednumber = parseFloat(pendingreflections.toFixed(9));
-      console.log(formattednumber);
-      return formattednumber;
     }
 
     async function FetchDistributed() {
@@ -216,7 +210,7 @@ export default function ClaimComponent() {
         const contract = new Contract(contractaddress, abi, provider);
         const rewardToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
         const Reflections = await contract.getTotalDividendsDistributed();
-        const formattedDistributed = (formatEther(Reflections.toString()));
+        const formattedDistributed = (formatEther(Reflections));
         settotaldistributed(formattedDistributed);
         console.log(formattedDistributed);
 
