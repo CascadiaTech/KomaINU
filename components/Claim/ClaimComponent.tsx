@@ -27,9 +27,9 @@ export default function ClaimComponent() {
   const { library } = context;
   const [uniswaprovider, setuniswapprivder] = useState();
   const [tokenid, settokenid] = useState(Number);
-  const [pendingreflections, setpendingreflections] = useState(Number);
-  const [totalburned, settotalburned] = useState(Number);
-  const [totaldistributed, settotaldistributed] = useState(Number);
+  const [pendingreflections, setpendingreflections] = useState(String);
+  const [totalburned, settotalburned] = useState(String);
+  const [totaldistributed, settotaldistributed] = useState(String);
   const [balance, setbalance] = useState(Number);
   const [EthPrice, setEthPrice] = useState(Number);
   const [holdersCount, setholdersCount] = useState(Number);
@@ -164,7 +164,7 @@ export default function ClaimComponent() {
         const rewardToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
         const Reflections = await contract.withdrawableDividendOf(account); //.claim()
         const finalnumber = formatEther(Reflections.toString());
-        setpendingreflections(finalnumber);
+        setpendingreflections(Number(finalnumber));
         console.log(Reflections);
         console.log(finalnumber);
         return finalnumber;
