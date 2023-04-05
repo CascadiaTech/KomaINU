@@ -9,6 +9,7 @@ import {
   JsonRpcFetchFunc,
   Web3Provider,
 } from "@ethersproject/providers";
+import { formatEther, parseEther, ethers } from "@ethersproject/units";
 import { Contract } from "@ethersproject/contracts";
 import { abiObject } from "../../contracts/abi/abi.mjs";
 import { Web3ReactProvider } from "@web3-react/core";
@@ -162,7 +163,7 @@ export default function ClaimComponent() {
         const contract = new Contract(contractaddress, abi, provider);
         const rewardToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
         const Reflections = await contract.withdrawableDividendOf(account); //.claim()
-        const finalnumber = Web3.utils.fromWei(Reflections.toString());
+        const finalnumber = formatEther(Reflections.toString());
         setpendingreflections(finalnumber);
         console.log(Reflections);
         console.log(finalnumber);
@@ -185,11 +186,12 @@ export default function ClaimComponent() {
         const contractaddress = "0x5F5ba036Bd464782894499Fb21aa137d3eA9d757"; // "clienttokenaddress"
         const contract = new Contract(contractaddress, abi, provider);
         const burnAmount = await contract.TotalBurned();
-        const finalnumber = Number(Web3.utils.fromWei(burnAmount.toString())).toFixed(0);
-        settotalburned(finalnumber);
+        const finalNumber = formatEther(burnAmount.toString());
+        const finalNumberparse = parseFloat(finalNumber).toFixed(2);
+        settotalburned(finalNumberparse);
         console.log(burnAmount);
-        console.log(finalnumber);
-        return finalnumber;
+        console.log(finalNumberparse);
+        return finalNumberparse;
       } catch (error) {
         console.log(error);
         setLoading(false);
@@ -430,7 +432,7 @@ export default function ClaimComponent() {
               "rounded-xl text-black text-xl px-4 py-2 m-3"
             }
           >
-            <p className={"text-xl text-gray-300 "}>{pendingreflections}</p>
+            <p className={"text-xl text-gray-300 "}>{pendingreflections} ETH</p>
           </div>
           <div
             className={
